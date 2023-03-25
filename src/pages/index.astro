@@ -14,16 +14,37 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 
 		</div>
-		<button id="btn">問題</button>
-		<input id ="ans" type="number" class="hoge">	
-		<button id="answer">答える</button>
-		<p class="instructions">
-			this is space
-		</p>
+		<button id="btn">スタート</button>
+
+<div class ="numbers">
+	<div class="up">
+		<ul>
+			<li>9</li>
+			<li>8</li>
+			<li>7</li>
+		</ul>
+	</div>
+	<div class="mid">
+		<ul>
+			<li>6</li>
+			<li>5</li>
+			<li>4</li>
+		</ul>
+	</div>
+	<div class="low">
+		<ul>
+			<li>3</li>
+			<li>2</li>
+			<li>1</li>
+		</ul>
+	</div>
+	<div class="zero">
+		<ul>
+			<li>0</li>
+		</ul>
+	</div>
+</div>
 		
-		<p class="instructions">
-			this is space
-		</p>		
 		
 	</main>
 	
@@ -31,39 +52,33 @@ import Layout from '../layouts/Layout.astro';
 
 <script>
 	
-	const meke_num = () => {
-		const rondamNum_one= Math.floor(Math.random()*10)+1;
-		const rondamNum_two= Math.floor(Math.random()*10)+1;
-		const one = document.querySelector('.right');
-		const two = document.querySelector('.left');
-		one.textContent =String(rondamNum_one);
-		two.textContent =String(rondamNum_two);
-		console.log(rondamNum_one);
-		console.log(rondamNum_two);
-	}
+const meke_num = () => {
+	const rondamNum_one= Math.floor(Math.random()*10)+1;
+	const rondamNum_two= Math.floor(Math.random()*10)+1;
+	const one = document.querySelector('.right');
+	const two = document.querySelector('.left');
+	one.textContent =String(rondamNum_one);
+	two.textContent =String(rondamNum_two);
+	console.log(rondamNum_one);
+	console.log(rondamNum_two);
+}
 
-		document.getElementById('btn').addEventListener("click",()=>{
-		meke_num();		
-	})	
-
-	const answer = document.getElementById('answer');
-	answer.addEventListener("click",() => {
-		const one = document.querySelector('.right');
-		const two = document.querySelector('.left');
-		const ans = document.getElementById('ans');
-		const total = Number(one.textContent) + Number(two.textContent);
-		console.log(total);
+const start = document.getElementById('btn');
+start.addEventListener("click",()=>{
+	meke_num();		
+})	
 
 
-		if(total === Number(ans.value)){
-			alert('正解です')
-			ans.value= "";
-			meke_num();		
-		}
+
+const one = document.querySelector('.right');
+const two = document.querySelector('.left');
+const total = Number(one.textContent) + Number(two.textContent);
+console.log(total);
+
 
 		
 
-	});
+
 </script>
 
 <style>
@@ -84,6 +99,28 @@ import Layout from '../layouts/Layout.astro';
 		font-size: 3rem;
 		font-weight: 800;
 		margin: 0;
+	}
+	.numbers {
+		text-align: center;
+		justify-content: center;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		display: flex;
+	    text-align: center;
+		justify-content: center;			
+	}
+
+	li {
+		width: 60px;
+		background-color: aliceblue;
+		list-style: none;
+		margin-left:1rem;
+		margin-right: 1rem;
+		margin-bottom: 1rem;
+		font-size: 4rem;
 	}
 	.right,
 	.middle,
