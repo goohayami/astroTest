@@ -1,42 +1,81 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Astro Deploy Test">
 	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
+		<h1>Welcome</h1>
+			<div class="instructions">
+			<div class="question">
+			<div class="right">?</div>
+			<div class="middle">+</div>
+			<div class="left">?</div>
+		</div>
+
+		</div>
+		<button id="btn">問題</button>
+		<input id ="ans" type="number" class="hoge">	
+		<button id="answer">答える</button>
 		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
+			this is space
 		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
+		
+		<p class="instructions">
+			this is space
+		</p>		
+		
 	</main>
+	
 </Layout>
 
+<script>
+	
+	const meke_num = () => {
+		const rondamNum_one= Math.floor(Math.random()*10)+1;
+		const rondamNum_two= Math.floor(Math.random()*10)+1;
+		const one = document.querySelector('.right');
+		const two = document.querySelector('.left');
+		one.textContent =String(rondamNum_one);
+		two.textContent =String(rondamNum_two);
+		console.log(rondamNum_one);
+		console.log(rondamNum_two);
+	}
+
+		document.getElementById('btn').addEventListener("click",()=>{
+		meke_num();		
+	})	
+
+	const answer = document.getElementById('answer');
+	answer.addEventListener("click",() => {
+		const one = document.querySelector('.right');
+		const two = document.querySelector('.left');
+		const ans = document.getElementById('ans');
+		const total = Number(one.textContent) + Number(two.textContent);
+		console.log(total);
+
+
+		if(total === Number(ans.value)){
+			alert('正解です')
+			ans.value= "";
+			meke_num();		
+		}
+
+		
+
+	});
+</script>
+
 <style>
+	.question {
+		display: flex;
+	}
+	.hoge {
+		width: 80px;
+		height: 20px;
+	}
 	main {
+		text-align: center;
 		margin: auto;
 		padding: 1.5rem;
 		max-width: 60ch;
@@ -45,6 +84,11 @@ import Card from '../components/Card.astro';
 		font-size: 3rem;
 		font-weight: 800;
 		margin: 0;
+	}
+	.right,
+	.middle,
+	.left {
+		font-size: 3rem;
 	}
 	.text-gradient {
 		background-image: var(--accent-gradient);
@@ -72,10 +116,5 @@ import Card from '../components/Card.astro';
 	.instructions strong {
 		color: rgb(var(--accent));
 	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
+	
 </style>
